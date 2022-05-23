@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KryptographyKP.Client", "KryptographyKP.Client\KryptographyKP.Client.csproj", "{A608202B-9352-47F9-BE4A-11D001CD728D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM.Core", "MVVM.Core\MVVM.Core.csproj", "{F1483310-EB5A-490F-9D0C-0A6E8E12DA67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHACAL", "SHACAL\SHACAL.csproj", "{531D5D1A-F00B-497C-9A09-BEBD940E4076}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTRUEncrypt", "NTRUEncrypt\NTRUEncrypt.csproj", "{26066975-6D09-4DE2-8C74-10136010DB71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KryptographyKP.Server", "KryptographyKP.Server\KryptographyKP.Server.csproj", "{A93D9DA7-2530-46D4-A554-52B1298F5E86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShacalTest", "ShacalTest\ShacalTest.csproj", "{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtruTest", "NtruTest\NtruTest.csproj", "{DC6A693D-A615-4952-9735-8519F5D27BFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A608202B-9352-47F9-BE4A-11D001CD728D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A608202B-9352-47F9-BE4A-11D001CD728D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A608202B-9352-47F9-BE4A-11D001CD728D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A608202B-9352-47F9-BE4A-11D001CD728D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1483310-EB5A-490F-9D0C-0A6E8E12DA67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1483310-EB5A-490F-9D0C-0A6E8E12DA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1483310-EB5A-490F-9D0C-0A6E8E12DA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1483310-EB5A-490F-9D0C-0A6E8E12DA67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531D5D1A-F00B-497C-9A09-BEBD940E4076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531D5D1A-F00B-497C-9A09-BEBD940E4076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531D5D1A-F00B-497C-9A09-BEBD940E4076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531D5D1A-F00B-497C-9A09-BEBD940E4076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26066975-6D09-4DE2-8C74-10136010DB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26066975-6D09-4DE2-8C74-10136010DB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26066975-6D09-4DE2-8C74-10136010DB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26066975-6D09-4DE2-8C74-10136010DB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09B4A2B1-23C1-42E9-8891-7F61D741280E}
+	EndGlobalSection
+EndGlobal
