@@ -2,7 +2,7 @@
 Readme : Kursovaya_rabota.pdf
 
 | SHACAL | + |
-||...||...||
+| ------------- |:------------------:| -----:|
 | NTRUEncrypt | + |
 | Server | + |
 | Сlient | - |
