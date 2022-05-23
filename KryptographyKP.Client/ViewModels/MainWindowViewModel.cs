@@ -110,7 +110,6 @@ namespace KryptographyKP.Client.ViewModels
                 byte[] vector = new byte[8];
                 Random rnd = new Random();
                 rnd.NextBytes(vector);
-                
                 CipherContext cipherContext = new CipherContext(shacal, 20, CipherContext.Mode.ECB, vector);
                 StreamWriter writer = new StreamWriter(_stream);
                 writer.WriteLine(Convert.ToBase64String(vector));
