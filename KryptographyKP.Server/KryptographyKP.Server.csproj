@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NTRUEncrypt\NTRUEncrypt.csproj" />
     <ProjectReference Include="..\SHACAL\SHACAL.csproj" />
   </ItemGroup>

@@ -15,7 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KryptographyKP.Server", "Kr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShacalTest", "ShacalTest\ShacalTest.csproj", "{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtruTest", "NtruTest\NtruTest.csproj", "{DC6A693D-A615-4952-9735-8519F5D27BFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NtruTest", "NtruTest\NtruTest.csproj", "{DC6A693D-A615-4952-9735-8519F5D27BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{0D76A487-06ED-43F0-BA1B-1F662A16A3B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "slnitems", "slnitems", "{5B7A51B0-5ED0-4124-8C4D-BB2177DEBD7E}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +58,10 @@ Global
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D76A487-06ED-43F0-BA1B-1F662A16A3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D76A487-06ED-43F0-BA1B-1F662A16A3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D76A487-06ED-43F0-BA1B-1F662A16A3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D76A487-06ED-43F0-BA1B-1F662A16A3B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
