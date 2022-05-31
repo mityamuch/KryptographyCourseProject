@@ -7,8 +7,19 @@ import "google/protobuf/Empty.proto";
 package CryptoServices;
 
 service Chat {
-    rpc Send (OpenMessage) returns (Reply);
-    rpc Get (google.protobuf.Empty) returns (OpenMessage);
+    rpc Auth (AuthMessage) returns (AuthReply);
+    rpc GetAsimetricKey(OpenMessage) returns (AuthReply);
+    rpc SendSessionKey(OpenMessage) returns (Reply);
+    rpc Send (stream OpenMessage) returns (Reply);
+    rpc Get (google.protobuf.Empty) returns (stream OpenMessage);
+}
+
+message AuthMessage{
+  int32 id =1;
+}
+
+message AuthReply{
+  bytes asymmetric_key = 2;
 }
 
 // The request message containing the user's name.

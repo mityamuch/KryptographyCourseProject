@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -21,10 +22,14 @@ namespace KryptographyKP.Client.ViewModels
 
         private string _enteredText;
         private string _encryptedText;
-        private static int _port = 8005; // порт сервера
-        private static string _address = "127.0.0.1"; // адресс сервера
-        private static TcpClient? _client;
-        private NetworkStream _stream;
+
+
+        private const string host = "127.0.0.1";
+        private const int port = 8888;
+
+        static TcpClient client;
+        static NetworkStream stream;
+
         byte[] _SHACALKey;
 
 
@@ -35,25 +40,13 @@ namespace KryptographyKP.Client.ViewModels
         {
             try
             {
-                _client = new TcpClient(_address, _port);
-                _stream = _client.GetStream();
-                StreamWriter writer = new StreamWriter(_stream);
-                StreamReader reader = new StreamReader(_stream);
-                byte[] _publicKey = Convert.FromBase64String(reader.ReadLine());
-                _SHACALKey = new byte[64];
-                byte[] vector = new byte[8];
-                Random rnd = new Random();
-                rnd.NextBytes(_SHACALKey);
-                byte[] encrypted = NTRUEncyptService.Encrypt(NTRUEncyptService.BytesToConvModQ(_publicKey), _SHACALKey);
-                writer.WriteLine(Convert.ToBase64String(encrypted));
-                writer.Flush();
-                writer.Close();
-                reader.Close();
-
+                client = new TcpClient();
+                client.Connect(host, port); //подключение клиента
+                stream = client.GetStream();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось установить соединение с сервером");
+               MessageBox.Show(ex.Message);
             }
         }
         #region Properties
@@ -86,44 +79,21 @@ namespace KryptographyKP.Client.ViewModels
             _push ??= new RelayCommand(_ => Push());
 
         public ICommand DownloadCommand =>
-           _download ??= new RelayCommand(_ => Download());
+           _download ??= new RelayCommand(_ => ReceiveMessage());
 
 
 
 
         public void Push()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            string[] lines=null;
-            if (openFileDialog.ShowDialog() == true)
-            {
-                InFilePath = openFileDialog.FileName;
-            }
-            if (InFilePath != null)
-            {
-                lines = File.ReadAllLines(InFilePath);
-            }
-
             try
             {
-                ShacalService shacal = new ShacalService(_SHACALKey);
-                byte[] vector = new byte[8];
-                Random rnd = new Random();
-                rnd.NextBytes(vector);
-                CipherContext cipherContext = new CipherContext(shacal, 20, CipherContext.Mode.ECB, vector);
-                StreamWriter writer = new StreamWriter(_stream);
-                writer.WriteLine(Convert.ToBase64String(vector));
-                writer.Flush();
-                writer.WriteLine(1);
-                writer.Flush();
-                foreach (var line in lines)
-                {
-                    byte[] sendmessage = cipherContext.Encrypt(Encoding.ASCII.GetBytes(line));
-                    writer.WriteLine(Convert.ToBase64String(sendmessage));
-                    writer.Flush();
-                }
-                writer.Close();
-                _stream.Close();
+                string message = EnteredText;
+                byte[] data = Encoding.Unicode.GetBytes(message);
+                stream.Write(data, 0, data.Length);
+                Thread receiveThread = new Thread(new ThreadStart(ReceiveMessage));
+                receiveThread.Start(); //старт потока
+                SendMessage();
             }
             catch (Exception ex)
             {
@@ -131,56 +101,90 @@ namespace KryptographyKP.Client.ViewModels
             }
             finally
             {
-                if (_client != null)
-                    _client.Close();
+                Disconnect();
             }
         }
-
-        public void Download()
-        {
-            try
-            {
-                StreamWriter writer = new StreamWriter(_stream);
-                writer.WriteLine(2);
-                writer.Flush();
-                Console.WriteLine("Получение");
-                StreamReader reader = new StreamReader(_stream);
-                List<byte[]> buffer = new List<byte[]>();
-                var recievemessage = reader.ReadLine();
-                while (!reader.EndOfStream)
-                {
-                    buffer.Add(Convert.FromBase64String(reader.ReadLine()));
-                }
-
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                if (saveFileDialog.ShowDialog() == true) 
-                {
-                    StreamWriter wr = new StreamWriter(saveFileDialog.FileName);
-                    foreach (byte[] b in buffer)
-                    {
-                        wr.WriteLine(Convert.ToBase64String(b));
-                    }
-                    wr.Close();
-                }
-
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (_client != null)
-                    _client.Close();
-            }
-
-        }
-
         
 
 
         #endregion 
+
+        /*
+        private void Autorise()
+        {
+            _client = new TcpClient(_address, _port);
+            _stream = _client.GetStream();
+            using (StreamWriter writer = new StreamWriter(_stream))
+            {
+                using (StreamReader reader = new StreamReader(_stream)) 
+                { 
+                    byte[] _publicKey = Convert.FromBase64String(reader.ReadLine());
+                    _SHACALKey = new byte[64];
+                    byte[] vector = new byte[8];
+                    Random rnd = new Random();
+                    rnd.NextBytes(_SHACALKey);
+                    byte[] encrypted = NTRUEncyptService.Encrypt(NTRUEncyptService.BytesToConvModQ(_publicKey), _SHACALKey);
+                    writer.WriteLine(Convert.ToBase64String(encrypted));
+                    for (; ; )
+                    {
+                        var l = reader.ReadLine();
+                        writer.WriteLine("It's me");
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }
+            }
+
+        }
+        */
+        // отправка сообщений
+        private void SendMessage()
+        {
+
+           //while (true)
+           //{
+                //string message = EnteredText;
+                //byte[] data = Encoding.Unicode.GetBytes(message);
+                //stream.Write(data, 0, data.Length);
+            //}
+        }
+        // получение сообщений
+        private void ReceiveMessage()
+        {
+
+                try
+                {
+                    byte[] data = new byte[64]; // буфер для получаемых данных
+                    StringBuilder builder = new StringBuilder();
+                    int bytes = 0;
+                    do
+                    {
+                        bytes = stream.Read(data, 0, data.Length);
+                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                    }
+                    while (stream.DataAvailable);
+
+                    string message = builder.ToString();
+                    EncryptedText+= message;//вывод сообщения
+                }
+                catch
+                {
+                   MessageBox.Show("Подключение прервано!"); //соединение было прервано
+                    Disconnect();
+                }
+            
+        }
+
+        static void Disconnect()
+        {
+            if (stream != null)
+                stream.Close();//отключение потока
+            if (client != null)
+                client.Close();//отключение клиента
+            Environment.Exit(0); //завершение процесса
+        }
+
+
+
 
     }
 }
