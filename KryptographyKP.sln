@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "slnitems", "slnitems", "{5B
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcServer", "GrpcServer\GrpcServer.csproj", "{EE109B73-361A-4E07-9848-8E27C87D8535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6A693D-A615-4952-9735-8519F5D27BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE109B73-361A-4E07-9848-8E27C87D8535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE109B73-361A-4E07-9848-8E27C87D8535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE109B73-361A-4E07-9848-8E27C87D8535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE109B73-361A-4E07-9848-8E27C87D8535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

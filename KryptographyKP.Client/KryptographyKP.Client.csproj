@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GrpcClient\GrpcClient.csproj" />
     <ProjectReference Include="..\MVVM.Core\MVVM.Core.csproj" />
     <ProjectReference Include="..\NTRUEncrypt\NTRUEncrypt.csproj" />
     <ProjectReference Include="..\SHACAL\SHACAL.csproj" />
@@ -18,9 +19,5 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.21.0" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.21.0" />
-  </ItemGroup>
 
 </Project>

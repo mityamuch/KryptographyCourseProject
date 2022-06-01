@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
-using System.Text;
+
 using System.Threading;
-using System.Windows;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Grpc.Net.Client;
 using Microsoft.Win32;
 using MVVM.Core;
 using NTRUEncrypt;
 using SHACAL;
+using GrpcClient;
+using System.Net.Http;
+using GrpcServer;
+using Key = NTRUEncrypt.Key;
 
 namespace KryptographyKP.Client.ViewModels
 {
@@ -22,14 +24,6 @@ namespace KryptographyKP.Client.ViewModels
 
         private string _enteredText;
         private string _encryptedText;
-
-
-        private const string host = "127.0.0.1";
-        private const int port = 8888;
-
-        static TcpClient client;
-        static NetworkStream stream;
-
         byte[] _SHACALKey;
 
 
@@ -38,16 +32,8 @@ namespace KryptographyKP.Client.ViewModels
         #endregion
         public MainWindowViewModel()
         {
-            try
-            {
-                client = new TcpClient();
-                client.Connect(host, port); //подключение клиента
-                stream = client.GetStream();
-            }
-            catch (Exception ex)
-            {
-               MessageBox.Show(ex.Message);
-            }
+            
+
         }
         #region Properties
         public string EnteredText
@@ -73,116 +59,37 @@ namespace KryptographyKP.Client.ViewModels
             }
         }
         #endregion
+
         #region Commands
 
         public ICommand PushCommand =>
             _push ??= new RelayCommand(_ => Push());
 
         public ICommand DownloadCommand =>
-           _download ??= new RelayCommand(_ => ReceiveMessage());
+           _download ??= new RelayCommand(_ => Get());
 
-
-
-
-        public void Push()
+        public async void Push()
         {
-            try
-            {
-                string message = EnteredText;
-                byte[] data = Encoding.Unicode.GetBytes(message);
-                stream.Write(data, 0, data.Length);
-                Thread receiveThread = new Thread(new ThreadStart(ReceiveMessage));
-                receiveThread.Start(); //старт потока
-                SendMessage();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Disconnect();
-            }
+            Key key = new Key();
+
+            ClientServerCommunication com = new ClientServerCommunication();
+            byte[] NtrueKey=NTRUEncyptService.ConvModQToBytes(key.PublicKey());
+
+
+
+
+
+         
+
+
         }
         
+        public void Get() 
+        {
 
 
+        }
         #endregion 
-
-        /*
-        private void Autorise()
-        {
-            _client = new TcpClient(_address, _port);
-            _stream = _client.GetStream();
-            using (StreamWriter writer = new StreamWriter(_stream))
-            {
-                using (StreamReader reader = new StreamReader(_stream)) 
-                { 
-                    byte[] _publicKey = Convert.FromBase64String(reader.ReadLine());
-                    _SHACALKey = new byte[64];
-                    byte[] vector = new byte[8];
-                    Random rnd = new Random();
-                    rnd.NextBytes(_SHACALKey);
-                    byte[] encrypted = NTRUEncyptService.Encrypt(NTRUEncyptService.BytesToConvModQ(_publicKey), _SHACALKey);
-                    writer.WriteLine(Convert.ToBase64String(encrypted));
-                    for (; ; )
-                    {
-                        var l = reader.ReadLine();
-                        writer.WriteLine("It's me");
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-            }
-
-        }
-        */
-        // отправка сообщений
-        private void SendMessage()
-        {
-
-           //while (true)
-           //{
-                //string message = EnteredText;
-                //byte[] data = Encoding.Unicode.GetBytes(message);
-                //stream.Write(data, 0, data.Length);
-            //}
-        }
-        // получение сообщений
-        private void ReceiveMessage()
-        {
-
-                try
-                {
-                    byte[] data = new byte[64]; // буфер для получаемых данных
-                    StringBuilder builder = new StringBuilder();
-                    int bytes = 0;
-                    do
-                    {
-                        bytes = stream.Read(data, 0, data.Length);
-                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-                    }
-                    while (stream.DataAvailable);
-
-                    string message = builder.ToString();
-                    EncryptedText+= message;//вывод сообщения
-                }
-                catch
-                {
-                   MessageBox.Show("Подключение прервано!"); //соединение было прервано
-                    Disconnect();
-                }
-            
-        }
-
-        static void Disconnect()
-        {
-            if (stream != null)
-                stream.Close();//отключение потока
-            if (client != null)
-                client.Close();//отключение клиента
-            Environment.Exit(0); //завершение процесса
-        }
-
 
 
 

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer";
+
+package greet;
+
+// The greeting service definition.
+service CryptographyServer {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc SayBye (HelloRequest) returns (HelloReply);
+  rpc SendFile (FileBuffer) returns (IsWritten);	//на сервер
+  rpc TakeFile (WhatFile) returns (FileBuffer);
+  rpc WhoAtServer (HelloRequest) returns (UserList);
+  rpc TakeAllFileNames (HelloRequest) returns (FileList);
+  rpc ClearDir (HelloRequest) returns (ClearAll);
+}
+
+message FileBuffer {
+  string filename = 1;
+  bytes info = 2;
+}
+
+message IsWritten {
+  bool isWrittenInServer = 1;
+}
+
+message WhatFile {
+  string filename = 1;
+}
+message UserList {
+  string users = 1;
+}
+
+message FileList {
+  string files = 1;
+}
+
+message ClearAll {
+  bool isClear = 1;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
