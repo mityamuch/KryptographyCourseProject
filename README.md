@@ -6,5 +6,4 @@ Readme : Kursovaya_rabota.pdf
 | ------------- | -  |
 | NTRUEncrypt   | +  |
 | Server        | +  |
-| Сlient        | -  |
-| Modes         | -+ |
+| Сlient        | +  |
