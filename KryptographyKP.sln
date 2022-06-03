@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHACAL", "SHACAL\SHACAL.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTRUEncrypt", "NTRUEncrypt\NTRUEncrypt.csproj", "{26066975-6D09-4DE2-8C74-10136010DB71}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KryptographyKP.Server", "KryptographyKP.Server\KryptographyKP.Server.csproj", "{A93D9DA7-2530-46D4-A554-52B1298F5E86}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShacalTest", "ShacalTest\ShacalTest.csproj", "{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NtruTest", "NtruTest\NtruTest.csproj", "{DC6A693D-A615-4952-9735-8519F5D27BFC}"
@@ -22,9 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "slnitems", "slnitems", "{5B
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcServer", "GrpcServer\GrpcServer.csproj", "{EE109B73-361A-4E07-9848-8E27C87D8535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcServer", "GrpcServer\GrpcServer.csproj", "{EE109B73-361A-4E07-9848-8E27C87D8535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{3CF814C9-AC7F-4FCB-A79B-831032F41EB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +46,6 @@ Global
 		{26066975-6D09-4DE2-8C74-10136010DB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26066975-6D09-4DE2-8C74-10136010DB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26066975-6D09-4DE2-8C74-10136010DB71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A93D9DA7-2530-46D4-A554-52B1298F5E86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2D111E-DCFB-4196-A43A-29BAB1C5D5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU

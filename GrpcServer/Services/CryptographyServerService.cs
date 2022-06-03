@@ -8,7 +8,7 @@ namespace GrpcServer.Services
     public class CryptographyServerService : CryptographyServer.CryptographyServerBase
     {
         private readonly ILogger<CryptographyServerService> _logger;
-        private readonly List<string> _users = new List<string>();
+        private static readonly List<string> _users = new List<string>();
         private string _defaultPath = "/Tmp/";
         public CryptographyServerService(ILogger<CryptographyServerService> logger)
         {
@@ -174,7 +174,6 @@ namespace GrpcServer.Services
                 }
                 return Task.FromResult(new FileList
                 {
-
                     Files = allfilenames_str.ToString()
                 });
             }

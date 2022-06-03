@@ -1,6 +1,5 @@
 using GrpcServer.Services;
 using System.Net;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Additional configuration is required to successfully run gRPC on macOS.

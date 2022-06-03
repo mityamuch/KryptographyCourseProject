@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="dataencryption_application_dedatos_3363.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GrpcClient\GrpcClient.csproj" />
     <ProjectReference Include="..\MVVM.Core\MVVM.Core.csproj" />
     <ProjectReference Include="..\NTRUEncrypt\NTRUEncrypt.csproj" />
@@ -17,6 +21,10 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="dataencryption_application_dedatos_3363.ico" />
   </ItemGroup>
 
 

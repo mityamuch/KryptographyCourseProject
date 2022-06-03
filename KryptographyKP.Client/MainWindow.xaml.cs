@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KryptographyKP.Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace KryptographyKP.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public static int selind;
+        public MainWindow(string username)
         {
             InitializeComponent();
+            name.Text = username;
+            Closing += (DataContext as MainWindowViewModel).OnWindowClosing;
         }
     }
 }

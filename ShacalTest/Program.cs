@@ -8,7 +8,7 @@ byte[] content = Encoding.ASCII.GetBytes("abcdefghijklmnopqrst");
 
 Random rnd = new Random();
 byte[] key = new byte[64];
-byte[] vector = new byte[8];
+byte[] vector = new byte[64];
 rnd.NextBytes(key);
 rnd.NextBytes(vector);
 ShacalService shacal = new ShacalService(key);
